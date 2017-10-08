@@ -76,6 +76,14 @@ public partial class login2 : System.Web.UI.Page
 
                 Response.Redirect("Gestionnaire/AcceuilUser.aspx");
             }
+            else if (dr1.GetInt32(7) == 1)
+            {
+                Session["id"] = dr1.GetInt32(0);
+                Session["userName"] = dr1[3].ToString();
+                dr1.Close();
+
+                Response.Redirect("Administrateur/AcceuilUser.aspx");
+            }
         }
             
             

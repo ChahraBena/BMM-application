@@ -83,7 +83,7 @@ public partial class CréerBmm : System.Web.UI.Page
             SqlDataReader dr1;
             int code = genererCodeBMM();
             DateTime date = DateTime.Now;
-            query1 = "INSERT INTO BMM (Code, DateCreation, UtilisateurId, Valid1, Valid2) VALUES ("+code+" , '"+date+"' , "+idUser+",0,0)";
+            query1 = "INSERT INTO BMM (Code, DateCreation, UtilisateurId) VALUES ("+code+" , '"+date+"' , "+idUser+")";
             cmd = new SqlCommand(query1, conn);
             cmd.ExecuteNonQuery(); 
         
@@ -148,7 +148,7 @@ public partial class CréerBmm : System.Web.UI.Page
       Button2.Visible= true;
 
         Liste.Clear();
-        Liste2.Clear();                                                      
+        Liste2.Clear();
     }
 
    

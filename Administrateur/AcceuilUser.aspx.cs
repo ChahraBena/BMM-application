@@ -11,66 +11,70 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
 
-public partial class HistoriqueEncours : System.Web.UI.Page
+public partial class AcceuilUser : System.Web.UI.Page
 {
+
     public List<BMM> listeValide = new List<BMM>();
+    public List<BMM> listeNonValide = new List<BMM>();
     protected void Page_Load(object sender, EventArgs e)
     {
         Label1.Text = Session["userName"].ToString();
-        int idUser = Int32.Parse(Session["id"].ToString());
-
+        int idUser = Int32.Parse(  Session["id"].ToString());
         if (!Page.IsPostBack)
         {
-
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             listeValide = new List<BMM>();
-            conn.Open(); int valid1 = 0;
-            string query1 = "SELECT  Code,Valid1,Valid2,IdGestionnaire,DateCreation,IdValidateur2 FROM BMM WHERE UtilisateurId=" + idUser + "";
-            SqlCommand cmd = new SqlCommand(query1, conn); BMM b;
-            SqlDataReader dr1 = cmd.ExecuteReader(); string s = ""; int code; string validation1 = "non validé", validation2 = "non validé", livr = "non livré";
+            listeNonValide = new List<BMM>();
+            conn.Open();
+           string query1 = "SELECT  Code,IdValidateur1,IdValidateur2,idGestionnaire,DateCreation FROM BMM WHERE UtilisateurId=" + idUser + "";
+           SqlCommand cmd = new SqlCommand(query1, conn); BMM b; 
+           SqlDataReader dr1 = cmd.ExecuteReader(); string s =""; int code; string valid1 = "non validé", valid2 = "non validé", livr = "non livré";
             while (dr1.Read())
             {
-                validation1 = "non validé"; validation2 = "non validé"; livr = "non livré";
+                valid1 = "non validé"; valid2 = "non validé"; livr = "non livré";
                 code = dr1.GetInt32(0);
-                if (dr1[1] != null)
+                
+                if (dr1["IdValidateur1"].ToString() != s)
                 {
-
-                    if (dr1[1].ToString() != "False")
+                    
+                    valid1 = "Validé";
+                    if (dr1["IdValidateur2"].ToString() != s)
                     {
-                        validation1 = "Validé";
-                        if (dr1["IdValidateur2"].ToString() != s)
+                        valid2 = "Validé";
+                        if (dr1["IdGestionnaire"].ToString() != s)
                         {
-                            validation2 = "Validé";
-                            if (dr1["IdGestionnaire"].ToString() != s)
-                            {
-                            }
-                            else
-                            {
-                                b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
-                                listeValide.Add(b);
-
-
-                            }
+                            livr = "Livré";
+                            b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
+                            listeNonValide.Add(b);
                         }
                         else
                         {
-                            b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
+                            b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
                             listeValide.Add(b);
-
+                          
 
                         }
-
                     }
                     else
                     {
-                        b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
+                        b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
                         listeValide.Add(b);
+                       
 
                     }
+
                 }
+                else
+                {
+                    b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
+                    listeValide.Add(b);
+                  
+                }     
             }
         }
+
     }
+
 
     public class BMM
     {
@@ -109,4 +113,6 @@ public partial class HistoriqueEncours : System.Web.UI.Page
         }
 
     }
+
+    
 }

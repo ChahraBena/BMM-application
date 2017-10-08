@@ -23,7 +23,7 @@ public partial class Validateur_HistoriqueValidation : System.Web.UI.Page
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             listeValide = new List<BMM>();
             conn.Open(); int valid1 = 0;
-            string query1 = "SELECT  * FROM BMM WHERE IdValidateur1="+idUser+" AND Valid1='True'";
+            string query1 = "SELECT  * FROM BMM WHERE IdValidateur1="+idUser+" AND Valid1=1";
             SqlCommand cmd = new SqlCommand(query1, conn); BMM b;
             SqlDataReader dr1 = cmd.ExecuteReader(); string s = ""; int code; string validation1 = "non validé", validation2 = "non validé", livr = "non livré";
             while (dr1.Read())

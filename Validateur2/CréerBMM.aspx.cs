@@ -16,8 +16,8 @@ public partial class CréerBMMValidateur : System.Web.UI.Page
     public static List<produit> Liste2 = new List<produit>();
     public static int i = 1;
     public static int idbmm;
-    DataTable dt;
-    int idUser = 0; int Departement = 0;
+    DataTable dt; int Departement = 0;
+    int idUser = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -79,20 +79,22 @@ public partial class CréerBMMValidateur : System.Web.UI.Page
         try
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
-            conn.Open();
+            conn.Open(); int IdVal1 = 0;
+            string query2 = "SELECT Id FROM Utilisateur WHERE DepartementId=" + Departement + " AND TypeUserId=" + 3 + "";
+            SqlCommand cmd3 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd3.ExecuteReader();
+            while (dr2.Read())
+            {
+                IdVal1 = dr2.GetInt32(0);
+            }
+            dr2.Close();
+
             string query1 = "";
-            SqlCommand cmd;int IdValidateur1=0;
+            SqlCommand cmd;
             SqlDataReader dr1;
             int code = genererCodeBMM();
             DateTime date = DateTime.Now;
-            string query2 = "SELECT Id FROM Utilisateur WHERE DepartementId=" + Departement + " AND TypeUserId=" + 3 + " ";
-            cmd = new SqlCommand(query2, conn);
-            dr1 = cmd.ExecuteReader();
-            while(dr1.Read())
-            {
-                IdValidateur1 = dr1.GetInt32(0);
-            }
-            query1 = "INSERT INTO BMM (Code, DateCreation, UtilisateurId,Valid1,Valid2,IdValidateur1) VALUES (" + code + " , '" + date + "' , " + idUser + ",0,0,"+IdValidateur1+")";
+            query1 = "INSERT INTO BMM (Code,IdValidateur1, DateCreation, UtilisateurId, Valid1, Valid2) VALUES (" + code + "," + IdVal1 + " , '" + date + "' , " + idUser + ",0,0)";
             cmd = new SqlCommand(query1, conn);
             cmd.ExecuteNonQuery();
 

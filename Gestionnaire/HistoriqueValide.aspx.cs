@@ -37,9 +37,9 @@ public partial class HistoriqueValide : System.Web.UI.Page
 
                     if (dr1[1].ToString() != "False")
                     {
-                        if (dr1["IdValidateur2"].ToString() != s)
+                        if (dr1[2].ToString() != s)
                         {
-                            if (dr1["IdGestionnaire"].ToString() != s)
+                            if (dr1[3].ToString() != s)
                             {
                                 b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
                                 listeValide.Add(b);

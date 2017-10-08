@@ -287,7 +287,8 @@ $(document).ready(function(){
 						<li><a href="HistoriqueEncours.aspx">BMM en cours</a></li>
 						<li><a href="HistoriqueValide.aspx">BMM validés</a></li>
 					</ul>
-				</li>			</ul>
+				</li>
+              			</ul>
 		</div>
 	</div>
 </nav>
@@ -314,10 +315,8 @@ $(document).ready(function(){
                  <tbody>
      <% foreach (BMM b in listeValide) { %>
              <tr>
-  
                  <td><%= b.getCode() %></td>
                  <td><%= b.getDateCreation() %></td>
-
   </tr>
 <% } %>
 </tbody>

@@ -299,7 +299,7 @@ $(document).ready(function(){
 					</ul>
 				</li>
                <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Validation<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Validation<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-ok"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
 						<li><a href="ValiderBMM.aspx">Valider BMM</a></li>
 						<li><a href="HistoriqueValidation.aspx">Historique De validation</a></li>

@@ -1,30 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="stock.aspx.cs" Inherits="Gestionnaire_stock" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AjouterUser.aspx.cs" Inherits="AjouterUser" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Gestion de stock</title>
-   
-
-   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
-<script type="text/javascript" 
-
-src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" 
-
-src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
-   
-     <script>
-$(document).ready(function(){
-    $('#myTable').dataTable();
-});
-</script>      <style>
+    <title>BMMApp | Ajouter</title>
+     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+        <style>
          @import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
-              body{
+        body{
 	margin: 0;
 	padding: 0;
 	background: #fff;
@@ -42,7 +31,10 @@ $(document).ready(function(){
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background-color:#FAFAFA;
+	background-image: url(Images/Sonatrach.png);
+	background-size: cover;
+	-webkit-filter: blur(8px);
+	z-index: 0;
 }
         .sidebar{
 	width:14.5%;
@@ -241,28 +233,11 @@ $(document).ready(function(){
         margin-top:50px;
         margin-left:40px;
     }
-    .contenu{
+    .content{
         font-size:15px;
         font-family:'Source Serif Pro', serif;
         color:white;
-        top:10px;
-        left:40px;
     }
-    .h2{
-        margin-bottom:35px;
-    }
-    .buttons{
-        margin-left:220px;
-        margin-top:62px;
-    }
-    .buttonss{
-        margin-right:-110px;
-    }
-    
-       .tableBack{
-           background-color:#EFA805;
-       }
-  
   
     </style>
 </head>
@@ -277,102 +252,103 @@ $(document).ready(function(){
         <nav class="navbar navbar-custom">
   <div class="container-fluid">
         <div class="navbar-header">
-          <img src="../Images/logo.png" >      
+          <img src="Images/logo.png" >      
         </div>
        <a class="navbar-brand" href="#">BMMApp</a>
         
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>
-              <asp:Label ID="LabelUser" runat="server" Text=""></asp:Label> </a></li>
+              <asp:Label ID="Label1" runat="server" Text=""></asp:Label> </a></li>
           <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
         </ul>
       </div>
     </nav>
     </div>
-     </div>
     <div class="sidebar">
         <nav class="navbar navbar-inverse sidebar" role="navigation">
     <div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li ><a href="#">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                <li ><a href="CréerBMM.aspx">BMM<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
-                 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+				<li class="active"><a href="#">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+				<li ><a href="administration.aspx">Administration<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
+                <li ><a href="#">Validation<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-saved"></span></a></li>
+				<li ><a href="#">Stock<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">BMM <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="HistoriqueEncours.aspx">BMM en cours</a></li>
-						<li><a href="HistoriqueValide.aspx">BMM validés</a></li>
-					</ul>
-				</li>
-                        <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Stock<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a>
-					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="Livraison.aspx">BMM à livrer</a></li>
-						<li><a href="stock.aspx">Gestion de stock</a></li>
+						<li><a href="#">Creer</a></li>
+						<li><a href="#">Consulter</a></li>
+					
 					</ul>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
+<div class="main">
+<!-- Content Here -->
+</div>
     </div>
   
     
   <form id="contactForm" runat="server" method="post" class="form-horizontal">
-       <div class="form-group">
+     <div class="form-group">
           <div class="col-md-3"></div>
          <div class="col-md-3">
              <div class="content">
-                   <h3>Ajouter un Produit</h3></div></div>
+                   <h3>Ajouter un utilisateur</h3></div></div>
              </div>
-         <div class="form-group">
+       
+    <div class="form-group">
+        <label class="col-md-3 control-label content">Nom</label>
+        <div class="col-md-3">
+            <asp:TextBox ID="TextBoxNom" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+    </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label content">Prenom</label>
+        <div class="col-md-3">
+            <asp:TextBox ID="TextBoxPrenom" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+    </div>
+      <div class="form-group">
+        <label class="col-md-3 control-label content">Nom d'utilisateur</label>
+        <div class="col-md-3">
+            <asp:TextBox ID="TextBoxUsername" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+    </div>
+       <div class="form-group">
+        <label class="col-md-3 control-label content">Matricule</label>
+        <div class="col-md-3">
+            <asp:TextBox ID="TextBoxMatricule" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label content">Email</label>
+        <div class="col-md-3">
+            <asp:TextBox ID="TextBoxEmail" CssClass="form-control" runat="server"></asp:TextBox>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label content">Département</label>
+        <div class="col-md-3">
+            <asp:DropDownList  ID="DropDownListDepartement" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nom" DataValueField="Nom"></asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource1"  runat="server" ConnectionString="<%$ ConnectionStrings:BMM_SHConnectionString2 %>" SelectCommand="SELECT [Nom] FROM [Departement]"></asp:SqlDataSource>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-md-3 control-label content">Type</label>
         <div class="col-md-3">
-            <asp:DropDownList ID="DropDownListType" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nom" DataValueField="Nom"></asp:DropDownList>
-                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BMM_SHConnectionString2 %>" SelectCommand="SELECT [Nom] FROM [TypeProduit]"></asp:SqlDataSource>
-                 </div>
-    </div>
-    
-       
-    <div class="form-group">
-        <label class="col-md-3 control-label content">Reference</label>
-        <div class="col-md-3">
-            <asp:TextBox ID="TextBoxReference" CssClass="form-control" runat="server"></asp:TextBox>
-        </div>
-    </div>
-      <div class="form-group">
-        <label class="col-md-3 control-label content">CodeSH</label>
-        <div class="col-md-3">
-            <asp:TextBox ID="TextBoxCodeSH" CssClass="form-control" runat="server"></asp:TextBox>
-        </div>
-    </div>
-      <div class="form-group">
-        <label class="col-md-3 control-label content">Modèle</label>
-        <div class="col-md-3">
-            <asp:TextBox ID="TextBoxModele" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:DropDownList ID="DropDownListType" CssClass="form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="Nom" DataValueField="Nom"></asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BMM_SHConnectionString2 %>" SelectCommand="SELECT [Nom] FROM [TypeUser]"></asp:SqlDataSource>
         </div>
     </div>
        <div class="form-group">
-        <label class="col-md-3 control-label content">Marque</label>
+        <label class="col-md-3 control-label content">Mot de passe</label>
         <div class="col-md-3">
-            <asp:TextBox ID="TextBoxMarque" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBoxMotdepasse" type="password" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label content">N0= Inventaire</label>
-        <div class="col-md-3">
-            <asp:TextBox ID="TextBoxInventaire" CssClass="form-control" runat="server"></asp:TextBox>
-        </div>
-    </div>
-       <div class="form-group">
-        <label class="col-md-3 control-label content">Description</label>
-        <div class="col-md-3">
-            <asp:TextBox ID="TextBoxDescription" CssClass="form-control" runat="server"></asp:TextBox>
-        </div>
-    </div>
- 
-       
     <!-- #messages is where the messages are placed inside -->
  
     <div class="form-group">
@@ -382,7 +358,8 @@ $(document).ready(function(){
         </div>
     </div>
 </form>
-      <script type="text/javascript">
+
+   <script type="text/javascript">
         $(document).ready(function () {
             $('#contactForm').bootstrapValidator({
                 container: '#messages',
@@ -392,40 +369,49 @@ $(document).ready(function(){
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    TextBoxCodeSH: {
+                    TextBoxNom: {
                         validators: {
                             notEmpty: {
-                                message: 'Veuillez saisir le code SH'
+                                message: 'Veuillez saisir le nom'
                             }
                         }
                     },
-                    TextBoxReference: {
+                    TextBoxPrenom: {
                         validators: {
                             notEmpty: {
-                                message: 'Veuillez saisir la référence'
+                                message: 'Veuillez saisir le précom'
                             }
                         }
                     },
-                   
-                    TextBoxModele: {
+                    TextBoxUsername: {
                         validators: {
                             notEmpty: {
-                                message: 'Veuillez saisir le modèle'
+                                message: 'Veuillez saisir le nom d utilisateur'
                             }
                         }
                     },
-                    TextBoxInventaire: {
+                    TextBoxMatricule: {
                         validators: {
                             notEmpty: {
-                                message: 'Veuillez saisir le numéro d inventaire'
+                                message: 'Veuillez saisir le matricule'
                             }
                         }
                     },
-                   
-                    TextBoxMarque: {
+                    TextBoxEmail: {
                         validators: {
                             notEmpty: {
-                                message: 'Veuillez saisir la marque'
+                                message: ''
+                            },
+                            emailAddress: {
+                                message: 'Cette adresse n est pas valide'
+                            }
+                        }
+                    },
+                    
+                    TextBoxMotdepasse: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Veuillez saisir le mot de passe'
                             }
                         }
                     }
@@ -433,16 +419,13 @@ $(document).ready(function(){
             });
         });
           </script>
-
-   
-   
-   <script src="https://code.jquery.com/jquery-1.12.4.min.js"> </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 
 
-
 </body>
 </html>
+

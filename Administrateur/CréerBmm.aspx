@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CréerBMM.aspx.cs" Inherits="CréerBMMValidateur" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CréerBmm.aspx.cs" Inherits="CréerBmm" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-   <title>Créer BMM</title>
+    <title>Créer BMM</title>
     <script>
         function change(textb,buttont)
         {
@@ -298,27 +298,21 @@ $(document).ready(function(){
       </div>
     </nav>
     </div>
-   <div class="sidebar">
+      <div class="sidebar">
         <nav class="navbar navbar-inverse sidebar" role="navigation">
     <div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li ><a href="#">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                <li class="active"><a href="CréerBMM.aspx">Créer BMM<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
-                             <li class="dropdown">
+				<li><a href="AcceuilUser.aspx">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                <li class="active" ><a href="CréerBMM.aspx">BMM<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
+                 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
 						<li><a href="HistoriqueEncours.aspx">BMM en cours</a></li>
 						<li><a href="HistoriqueValide.aspx">BMM validés</a></li>
 					</ul>
 				</li>
-                <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Validation<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-ok"></span></a>
-					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="ValiderBMM.aspx">Valider BMM</a></li>
-						<li><a href="HistoriqueValidation.aspx">Historique De validation</a></li>
-					</ul>
-				</li>
+                <li><a href="AjouterUser.aspx">Administration<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
 			</ul>
 		</div>
 	</div>

@@ -299,7 +299,7 @@ $(document).ready(function(){
 					</ul>
 				</li>
                <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Validation<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Validation<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-ok"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
 						<li><a href="ValiderBMM.aspx">Valider BMM</a></li>
 						<li><a href="HistoriqueValidation.aspx">Historique De validation</a></li>
@@ -348,6 +348,31 @@ $(document).ready(function(){
           
 
 </table>
+
+<asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+                    <asp:Button id="myButton" runat="server" Text="Afficher" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="myButton_Click"/>
+<div class="collapse" id="collapseExample">
+  <div class="card card-block">
+                   <div class="table-responsive table-back">
+         <table id="myTable2" class="display table" >
+            <thead>  
+          <tr>  
+            <th>Modèle</th>  
+            <th>Marque</th>
+              <th>Description</th>
+              <th>Référence</th>
+              
+          </tr>                  
+        </thead>  
+                  <tbody  id="BmmBody" runat="server">
+                           
+                        </tbody>
+         
+          
+
+</table>
+  </div>
+</div>
 </div>
             
            </div>

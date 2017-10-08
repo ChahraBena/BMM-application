@@ -25,7 +25,7 @@ public partial class HistoriqueValide : System.Web.UI.Page
         {
             DropDownList1.Items.Add(new ListItem("Selectionner un code", "id0"));
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
-            listeValide = new List<BMM>(); ListItem item;
+            listeValide = new List<BMM>();ListItem item;
             conn.Open(); int valid1 = 0, valid2 = 0;
             string query1 = "SELECT  Code,Valid1,Valid2,IdGestionnaire,DateCreation FROM BMM WHERE UtilisateurId=" + idUser + "";
             SqlCommand cmd = new SqlCommand(query1, conn); BMM b;
@@ -33,20 +33,20 @@ public partial class HistoriqueValide : System.Web.UI.Page
             while (dr1.Read())
             {
                 code = dr1.GetInt32(0);
-                validation1 = "validé"; validation2 = "validé"; livr = "livré";
+                validation1 = "non validé"; validation2 = "non validé"; livr = "non livré";
                 code = dr1.GetInt32(0);
                 if (dr1[1] != null)
                 {
 
                     if (dr1[1].ToString() != "False")
                     {
-                        if (dr1[2].ToString() != "False")
+                        if (dr1[2].ToString() != s)
                         {
                             if (dr1[2].ToString() != s)
                             {
                                 b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
                                 listeValide.Add(b);
-                                code = dr1.GetInt32(0);
+                                code = dr1.GetInt32(7);
                                 item = new ListItem();
                                 item.Text = code.ToString();
                                 item.Value = code.ToString();
@@ -62,7 +62,7 @@ public partial class HistoriqueValide : System.Web.UI.Page
     {
         Response.Redirect(Request.RawUrl, true);
         produit p;
-        if (DropDownList1.SelectedValue.ToString() != "Selectionner un code")
+        if(DropDownList1.SelectedValue.ToString()!= "Selectionner un code")
         {
             string query = "SELECT* FROM Descriptionbmm WHERE Code=" + DropDownList1 + "";
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
@@ -79,7 +79,7 @@ public partial class HistoriqueValide : System.Web.UI.Page
                 BmmBody.InnerHtml += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>", pr.getModele(), pr.getMarque(), pr.getDesignation(), pr.getReference());
             }
         }
-
+      
     }
     public class BMM
     {

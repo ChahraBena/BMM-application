@@ -292,12 +292,20 @@ $(document).ready(function(){
 				<li ><a href="#">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                 <li ><a href="CréerBMM.aspx">BMM<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
                  				<li class="dropdown">
-					<a href="#"class=" dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
-					<ul class=" active dropdown-menu forAnimate" role="menu">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
 						<li><a href="HistoriqueEncours.aspx">BMM en cours</a></li>
-						<li class="active"><a href="HistoriqueValide.aspx">BMM validés</a></li>
+						<li><a href="HistoriqueValide.aspx">BMM validés</a></li>
 					</ul>
-				</li>			</ul>
+				</li>
+                        <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Stock<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="Livraison.aspx">BMM à livrer</a></li>
+						<li><a href="stock.aspx">Gestion de stock</a></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

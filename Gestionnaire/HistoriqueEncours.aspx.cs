@@ -35,13 +35,13 @@ public partial class HistoriqueEncours : System.Web.UI.Page
                 if (dr1[1] != null)
                 {
 
-                    if (dr1[1].ToString() != "False")
+                    if (dr1.GetByte(1)!=0)
                     {
                         validation1 = "Validé";
-                        if (dr1["IdValidateur2"].ToString() != s)
+                        if (dr1.GetByte(2)!=0)
                         {
                             validation2 = "Validé";
-                            if (dr1["IdGestionnaire"].ToString() != s)
+                            if (dr1[3].ToString() != s)
                             {
                             }
                             else

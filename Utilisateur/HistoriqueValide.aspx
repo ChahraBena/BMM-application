@@ -295,7 +295,7 @@ $(document).ready(function(){
 					<a href="#"class=" dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
 					<ul class=" active dropdown-menu forAnimate" role="menu">
 						<li><a href="HistoriqueEncours.aspx">BMM en cours</a></li>
-						<li class="active"><a href="HistoriqueValide.aspx">BMM validés</a></li>
+						<li><a href="HistoriqueValide.aspx">BMM validés</a></li>
 					</ul>
 				</li>			</ul>
 		</div>
@@ -340,6 +340,30 @@ $(document).ready(function(){
           
 
 </table>
+                     <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+                    <asp:Button id="myButton" runat="server" Text="Afficher" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="myButton_Click"/>
+<div class="collapse" id="collapseExample">
+  <div class="card card-block">
+                   <div class="table-responsive table-back">
+         <table id="myTable2" class="display table" >
+            <thead>  
+          <tr>  
+            <th>Modèle</th>  
+            <th>Marque</th>
+              <th>Description</th>
+              <th>Référence</th>
+              
+          </tr>                  
+        </thead>  
+                  <tbody  id="BmmBody" runat="server">
+                           
+                        </tbody>
+         
+          
+
+</table>
+  </div>
+</div>
 </div>
             
            </div>

@@ -10,37 +10,71 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
-public partial class Validateur_HistoriqueValidation : System.Web.UI.Page
+
+public partial class HistoriqueEncours : System.Web.UI.Page
 {
     public List<BMM> listeValide = new List<BMM>();
     protected void Page_Load(object sender, EventArgs e)
     {
         Label1.Text = Session["userName"].ToString();
         int idUser = Int32.Parse(Session["id"].ToString());
+
         if (!Page.IsPostBack)
         {
 
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             listeValide = new List<BMM>();
             conn.Open(); int valid1 = 0;
-            string query1 = "SELECT  * FROM BMM WHERE Valid2='True'";
+            string query1 = "SELECT  Code,Valid1,Valid2,IdGestionnaire,DateCreation FROM BMM WHERE UtilisateurId=" + idUser + "";
             SqlCommand cmd = new SqlCommand(query1, conn); BMM b;
             SqlDataReader dr1 = cmd.ExecuteReader(); string s = ""; int code; string validation1 = "non validé", validation2 = "non validé", livr = "non livré";
             while (dr1.Read())
             {
-                code = dr1.GetInt32(7);
-                
-                if(dr1[3].ToString()!="")
+                validation1 = "non validé"; validation2 = "non validé"; livr = "non livré";
+                code = dr1.GetInt32(0);
+                if (dr1[1] != null)
                 {
-                    livr = "Livré";
-                }
-           
-                b = new BMM(code, "Validé", "validé", livr,dr1[4].ToString());
+
+                    if (dr1[1].ToString() != "False")
+                    {
+                        validation1 = "Validé";
+                        if (dr1[2].ToString() != s)
+                        {
+                            validation2 = "Validé";
+                            if (dr1[3].ToString() != s)
+                            {
+                            }
+                            else
+                            {
+                                b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
+                                listeValide.Add(b);
+
+
+                            }
+                        }
+                        else
+                        {
+                            b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
+                            listeValide.Add(b);
+
+
+                        }
+
+                    }
+                    else
+                    {
+                        b = new BMM(code, validation1, validation2, livr, dr1["DateCreation"].ToString());
                         listeValide.Add(b);
+
+                    }
                 }
 
+
+
             }
+        }
     }
+
     public class BMM
     {
         int code { get; set; }

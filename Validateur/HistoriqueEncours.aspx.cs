@@ -21,20 +21,20 @@ public partial class HistoriqueEncoursValidateur : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            
+
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             listeValide = new List<BMM>();
             conn.Open(); int valid1 = 0;
-            string query1 = "SELECT  Code,Valid1,Valid2,IdGestionnaire,DateCreation FROM BMM WHERE UtilisateurId=" + idUser + "";
+            string query1 = "SELECT  Code,Valid1,Valid2,IdGestionnaire,DateCreation,IdValidateur2 FROM BMM WHERE UtilisateurId=" + idUser + "";
             SqlCommand cmd = new SqlCommand(query1, conn); BMM b;
             SqlDataReader dr1 = cmd.ExecuteReader(); string s = ""; int code; string validation1 = "non validé", validation2 = "non validé", livr = "non livré";
             while (dr1.Read())
             {
                 validation1 = "non validé"; validation2 = "non validé"; livr = "non livré";
                 code = dr1.GetInt32(0);
-                if(dr1[1]!=null)
+                if (dr1[1] != null)
                 {
-                    
+
                     if (dr1[1].ToString() != "False")
                     {
                         validation1 = "Validé";
@@ -68,9 +68,6 @@ public partial class HistoriqueEncoursValidateur : System.Web.UI.Page
 
                     }
                 }
-               
-                
-               
             }
         }
     }

@@ -25,7 +25,7 @@ public partial class ValiderBMM : System.Web.UI.Page
             BMM b; ListItem item = new ListItem();
             DropDownList1.Items.Add(new ListItem("select your choice", "id0"));
             listeValide = new List<BMM>();
-            int code; string validation1="" , validation2="", livr="";
+            int code; string validation1="",validation2="", livr="";
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             conn.Open();
             string query1 = "SELECT * FROM BMM WHERE Valid2='False' AND Valid1='True'";
