@@ -21,7 +21,7 @@ public partial class Gestionnaire_LivrerProduit : System.Web.UI.Page
             
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             conn.Open();produit p;
-            string query = "SELECT Id FROM BMM WHERE Code="+0+ "";
+            string query = "SELECT Id FROM BMM WHERE Code="+Session["Dropdownlist1"]+ "";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr1 = cmd.ExecuteReader();
             while(dr1.Read())
@@ -135,5 +135,16 @@ public partial class Gestionnaire_LivrerProduit : System.Web.UI.Page
         {
             return this.designation;
         }
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
+        conn.Open();
+        string query1 = "UPDATE BMM SET IdGestionnaire=" + Int32.Parse(Session["id"].ToString())+ "WHERE code="+Session["Dropdownlist1"]+"";
+        SqlCommand cmd = new SqlCommand(query1, conn);
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        Response.Redirect(Request.RawUrl, true);
     }
 }

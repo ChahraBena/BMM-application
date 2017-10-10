@@ -27,6 +27,7 @@ $(document).ready(function(){
     $('#myTable2').dataTable();
 });
 </script>
+ 
     
 <style>        body{
 	margin: 0;
@@ -269,7 +270,7 @@ $(document).ready(function(){
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>
               <asp:Label ID="Label1" runat="server" Text=""></asp:Label> </a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+          <li><a href="../Disconnect.aspx"><span class="glyphicon glyphicon-log-in" runat ="server"></span>Se déconnecter</a></li>
         </ul>
       </div>
     </nav>
@@ -330,7 +331,7 @@ $(document).ready(function(){
 </div>
             
            </div>
-        <div class="col-md-2 column"> </div>
+        <div class="col-md-1 column"> </div>
                 <div class="col-md-4 column">          
                 <h2>BMM Validés</h2> <br/>
                 <div class="table-responsive table-back">

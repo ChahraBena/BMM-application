@@ -14,8 +14,8 @@ public partial class CréerBmm : System.Web.UI.Page
     public static List<produit> Liste = new List<produit>();
     public static List<produit> Liste2 = new List<produit>();
     public static int i = 1;
-    public static int   idbmm;
-    DataTable dt;
+    public static int idbmm;
+    DataTable dt; int Departement = 0;
     int idUser = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,9 +23,10 @@ public partial class CréerBmm : System.Web.UI.Page
         idUser = Int32.Parse(Session["id"].ToString());
         //((TextBox)lastpage.FindControl("TextBoxUser")).Text;
         LabelUser.Text = Session["UserName"].ToString();
+        Departement = Int32.Parse(Session["DepartementId"].ToString());
         if (!IsPostBack)
         {
-            
+
         }
     }
     private static readonly Random getrandom = new Random();
@@ -52,7 +53,7 @@ public partial class CréerBmm : System.Web.UI.Page
 
                 cmd = new SqlCommand("SELECT Id FROM BMM WHERE Code=" + code + "", conn);
                 dr1 = cmd.ExecuteReader();
-                if(dr1.Read())
+                if (dr1.Read())
                 {
                     code = GetRandomNumber(100, 1000000000);
                 }
@@ -63,57 +64,66 @@ public partial class CréerBmm : System.Web.UI.Page
             }
             return code;
         }
-       
-         catch(Exception ex)
-         {
-             return code;
-         }
+
+        catch (Exception ex)
+        {
+            return code;
+        }
 
     }
     public int createBMM()
     {
         int Idbmm = 0;
-       
+
         try
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
-            conn.Open();
+            conn.Open(); int IdVal1 = 0;
+            string query2 = "SELECT Id FROM Utilisateur WHERE DepartementId=" + Departement + " AND TypeUserId=" + 3 + "";
+            SqlCommand cmd3 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd3.ExecuteReader();
+            while (dr2.Read())
+            {
+                IdVal1 = dr2.GetInt32(0);
+            }
+            dr2.Close();
+
             string query1 = "";
             SqlCommand cmd;
             SqlDataReader dr1;
             int code = genererCodeBMM();
             DateTime date = DateTime.Now;
-            query1 = "INSERT INTO BMM (Code, DateCreation, UtilisateurId, Valid1, Valid2) VALUES ("+code+" , '"+date+"' , "+idUser+",0,0)";
+            query1 = "INSERT INTO BMM (Code,IdValidateur1, DateCreation, UtilisateurId, Valid1, Valid2) VALUES (" + code + "," + IdVal1 + " , '" + date + "' , " + idUser + ",0,0)";
             cmd = new SqlCommand(query1, conn);
-            cmd.ExecuteNonQuery(); 
-        
-            SqlCommand cmd2 = new SqlCommand("SELECT Id FROM BMM WHERE Code=" + code + "",conn);
+            cmd.ExecuteNonQuery();
+
+            SqlCommand cmd2 = new SqlCommand("SELECT Id FROM BMM WHERE Code=" + code + "", conn);
             dr1 = cmd2.ExecuteReader();
             if (dr1.Read())
             {
-                    Idbmm = dr1.GetInt32(0);
+                Idbmm = dr1.GetInt32(0);
                 dr1.Close();
                 idbmm = Idbmm;
-            
-            foreach (produit p in Liste)
-                {  
+
+                foreach (produit p in Liste)
+                {
                     cmd2 = new SqlCommand("INSERT INTO Descriptionbmm(modele,marque,designation,reference,BMMId) VALUES('" + p.getModele() + "' , '" + p.getMarque() + "' , '" + p.getDesignation() + "' , '" + p.getReference() + "' , " + idbmm + ")", conn);
                     cmd2.ExecuteNonQuery();
                 }
             }
             conn.Close();
             return Idbmm;
-       }
-      catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Label2.Text = "" + ex;
             return Idbmm;
         }
     }
-    
+
     public void add_row_Click(object sender, EventArgs e)
     {
-        
+
         i++;
         produit p = new produit(modele0.Text, marque0.Text, description0.Text, reference0.Text);
         Liste.Add(p);
@@ -122,36 +132,36 @@ public partial class CréerBmm : System.Web.UI.Page
         description0.Text = "";
         marque0.Text = "";
         reference0.Text = "";
-        Label2.Text = ""+i+"";
+        Label2.Text = "" + i + "";
         delete_row.Enabled = true;
     }
 
     public void delete_row_Click(object sender, EventArgs e)
     {
-         idbmm = 0;
+        idbmm = 0;
         i = 1;
-      //  Response.Redirect(HttpContext.Current.Request.Path);
-        idbmm =createBMM();
+        //  Response.Redirect(HttpContext.Current.Request.Path);
+        idbmm = createBMM();
         foreach (var p in Liste)
         {
-            
+
             BmmBody.InnerHtml += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>", p.getModele(), p.getMarque(), p.getDesignation(), p.getReference());
-          
+
         }
         tab.Visible = false;
-           delete_row.Visible = false;
-            add_row.Visible = false;
-           
+        delete_row.Visible = false;
+        add_row.Visible = false;
+
 
         Matable.Visible = true;
-       Button1.Visible = true;
-      Button2.Visible= true;
+        Button1.Visible = true;
+        Button2.Visible = true;
 
         Liste.Clear();
-        Liste2.Clear();                                                      
+        Liste2.Clear();
     }
 
-   
+
 
     public class produit
     {
@@ -186,21 +196,23 @@ public partial class CréerBmm : System.Web.UI.Page
 
     protected void modele0_TextChanged(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CréerBMM.aspx");
+        var message = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize("BMM Enregisté!");
+        var script = string.Format("alert({0});window.location ='AcceuilUser.aspx';", message);
+        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "", script, true);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
     {
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
         conn.Open();
-        SqlCommand cmd2 = new SqlCommand("DELETE FROM  Descriptionbmm WHERE BMMId="+idbmm+"", conn);
+        SqlCommand cmd2 = new SqlCommand("DELETE FROM  Descriptionbmm WHERE BMMId=" + idbmm + "", conn);
         cmd2.ExecuteNonQuery();
-         cmd2 = new SqlCommand("DELETE FROM  BMM WHERE Id=" + idbmm + "", conn);
+        cmd2 = new SqlCommand("DELETE FROM  BMM WHERE Id=" + idbmm + "", conn);
         cmd2.ExecuteNonQuery();
         conn.Close();
         Response.Redirect("CréerBMM.aspx");

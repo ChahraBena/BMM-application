@@ -142,6 +142,7 @@ public partial class Gestionnaire_Livraison : System.Web.UI.Page
             HttpCookie cookie = new HttpCookie("PreviousPage");
             cookie.Value = DropDownList1.Text;
             Response.Cookies.Add(cookie);
+        Session["Dropdownlist1"] = DropDownList1.Text;
             Response.Redirect("LivrerProduit.aspx");
         
 

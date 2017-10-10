@@ -60,11 +60,12 @@ public partial class HistoriqueValide : System.Web.UI.Page
     }
     protected void myButton_Click(object sender, EventArgs e)
     {
-        Response.Redirect(Request.RawUrl, true);
+         Response.Redirect(Request.RawUrl, true);
+        ListeProduit.Clear();
         produit p;
         if(DropDownList1.SelectedValue.ToString()!= "Selectionner un code")
         {
-            string query = "SELECT* FROM Descriptionbmm WHERE Code=" + DropDownList1 + "";
+            string query = "SELECT* FROM Descriptionbmm WHERE Code=" + DropDownList1.Text + "";
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -74,6 +75,7 @@ public partial class HistoriqueValide : System.Web.UI.Page
                 p = new produit(dr1[0].ToString(), dr1[1].ToString(), dr1[2].ToString(), dr1[3].ToString());
                 ListeProduit.Add(p);
             }
+            BmmBody.InnerHtml = "";
             foreach (var pr in ListeProduit)
             {
                 BmmBody.InnerHtml += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>", pr.getModele(), pr.getMarque(), pr.getDesignation(), pr.getReference());

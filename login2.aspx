@@ -148,6 +148,9 @@ overflow:hidden;
 
 .form-top-left h3 { margin-top: 0; color: #fff; }
 .form-top-left p { opacity: 0.8; color: #fff; }
+.msg{
+    color:red;
+}
 
     </style>
 </head>
@@ -185,12 +188,18 @@ overflow:hidden;
                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Saisir le mot de passe" CssClass="text-danger" ControlToValidate="TextBoxPassword" ></asp:RequiredFieldValidator>
                   
                   </div>
-                <div class="container">
+                  
+                   
+                        <div class="container">
                     <asp:Button ID="ButtonSubmit"  runat="server" CssClass="btn btn-warning "  Text="S'authentifier" OnClick="ButtonSubmit_Click" />
-                     </div>
+                   
+                  <div class="input-group msg">
+                       <asp:Label ID="LabelError" runat="server" Text="Le nom d'utilisateur et le mot de passe est érroné" Visible="false"></asp:Label>
+                       </div>
+               </div>
                   </div>
                
-           <asp:Label classe="erreur" ID="LabelError" runat="server" CssClass="text-danger" Text=""></asp:Label>
+          
               </div>
            
          </div>

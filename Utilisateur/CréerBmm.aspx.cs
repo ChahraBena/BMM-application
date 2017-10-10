@@ -201,7 +201,9 @@ public partial class CréerBmm : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CréerBMM.aspx");
+        var message = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize("BMM Enregisté!");
+        var script = string.Format("alert({0});window.location ='AcceuilUser.aspx';", message);
+        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "", script, true);
     }
 
     protected void Button2_Click(object sender, EventArgs e)

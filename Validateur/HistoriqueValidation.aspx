@@ -267,7 +267,7 @@ $(document).ready(function(){
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>
               <asp:Label ID="Label1" runat="server" Text=""></asp:Label> </a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+          <li><a href="../Disconnect.aspx"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
         </ul>
       </div>
     </nav>
@@ -311,8 +311,8 @@ $(document).ready(function(){
             <thead>  
           <tr>  
             <th>Code</th>  
-            <th>Date Création</th>
-              <th>Validation 1</th>
+            <th>Date Validation</th>
+              <th>Designation</th>
               <th>Validation 2</th>
               <th>Livraison</th>
           </tr>                  
@@ -322,8 +322,8 @@ $(document).ready(function(){
              <tr>
   
                  <td><%= b.getCode() %></td>
-                 <td><%= b.getDateCreation() %></td>
-                 <td><%= b.getValidation1() %></td>
+                 <td><%= b.getDateValidation() %></td>
+                 <td><%= b.getModele() %></td>
                  <td><%= b.getValidation2() %></td>
                  <td><%= b.getLivraison() %></td>
   </tr>

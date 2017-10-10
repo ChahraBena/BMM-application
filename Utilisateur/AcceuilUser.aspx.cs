@@ -24,32 +24,36 @@ public partial class AcceuilUser : System.Web.UI.Page
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
             listeValide = new List<BMM>();
-            listeNonValide = new List<BMM>();
+            listeNonValide = new List<BMM>();int Idbmm = 0;
             conn.Open();
-           string query1 = "SELECT  Code,IdValidateur1,IdValidateur2,idGestionnaire,DateCreation FROM BMM WHERE UtilisateurId=" + idUser + "";
+           
+           string query1 = "SELECT  Code, Valid1,Valid2,IdValidateur1,IdValidateur2,idGestionnaire,DateCreation,Id FROM BMM WHERE UtilisateurId=" + idUser + "";
            SqlCommand cmd = new SqlCommand(query1, conn); BMM b; 
-           SqlDataReader dr1 = cmd.ExecuteReader(); string s =""; int code; string valid1 = "non validé", valid2 = "non validé", livr = "non livré";
+           SqlDataReader dr1 = cmd.ExecuteReader(); string s =""; int code; string valid1 = "non validé", valid2 = "non validé", livr = "non livré";string modele = "";
             while (dr1.Read())
             {
                 valid1 = "non validé"; valid2 = "non validé"; livr = "non livré";
                 code = dr1.GetInt32(0);
-                
-                if (dr1["IdValidateur1"].ToString() != s)
+                Idbmm = dr1.GetInt32(7);
+                if (dr1[1].ToString() != "False")
                 {
                     
                     valid1 = "Validé";
-                    if (dr1["IdValidateur2"].ToString() != s)
+                    if (dr1[2].ToString() != "False")
                     {
                         valid2 = "Validé";
                         if (dr1["IdGestionnaire"].ToString() != s)
                         {
+                            modele = selectModele(Idbmm);
                             livr = "Livré";
-                            b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
+                            b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString(),modele);
                             listeNonValide.Add(b);
+                           
                         }
                         else
                         {
-                            b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
+                            modele = selectModele(Idbmm);
+                            b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString(),modele);
                             listeValide.Add(b);
                           
 
@@ -57,7 +61,8 @@ public partial class AcceuilUser : System.Web.UI.Page
                     }
                     else
                     {
-                        b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
+                        modele = selectModele(Idbmm);
+                        b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString(),modele);
                         listeValide.Add(b);
                        
 
@@ -66,7 +71,8 @@ public partial class AcceuilUser : System.Web.UI.Page
                 }
                 else
                 {
-                    b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString());
+                    modele = selectModele(Idbmm);
+                    b = new BMM(code, valid1, valid2, livr, dr1["DateCreation"].ToString(),modele);
                     listeValide.Add(b);
                   
                 }     
@@ -83,13 +89,19 @@ public partial class AcceuilUser : System.Web.UI.Page
         string validation2 { get; set; }
         string livraison { get; set; }
         string DateCreation;
-        public BMM(int code, string validation1, string validation2, string livraison, string DateCreation)
+        string modele;
+        public BMM(int code, string validation1, string validation2, string livraison, string DateCreation,string modele)
         {
             this.code = code;
             this.validation1 = validation1;
             this.validation2 = validation2;
             this.livraison = livraison;
             this.DateCreation = DateCreation;
+            this.modele = modele;
+        }
+        public string getModele()
+        {
+            return modele;
         }
         public int getCode()
         {
@@ -113,6 +125,28 @@ public partial class AcceuilUser : System.Web.UI.Page
         }
 
     }
+    public string selectModele(int idbmm)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
+        conn.Open();
+        string modele = "";
+        string query = "SELECT modele from Descriptionbmm WHERE BMMId=" + idbmm + "";
+        SqlCommand cmd = new SqlCommand(query, conn);
+        SqlDataReader dr1 = cmd.ExecuteReader();int verif = 0;
+        while(dr1.Read())
+        {
+            if(verif==0)
+            {
+                modele += ""+dr1[0].ToString();
+            }
+            else
+            {
+                modele += ", " + dr1[0].ToString();
+            }
+            verif = 1;
+        }
+        dr1.Close();
+        return modele;
+    }
 
-    
 }

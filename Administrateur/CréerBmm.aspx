@@ -306,7 +306,7 @@ $(document).ready(function(){
 				<li><a href="AcceuilUser.aspx">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                 <li class="active" ><a href="CréerBMM.aspx">BMM<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
                  				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
+					<a href="../Disconnect.aspx" class="dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
 						<li><a href="HistoriqueEncours.aspx">BMM en cours</a></li>
 						<li><a href="HistoriqueValide.aspx">BMM validés</a></li>

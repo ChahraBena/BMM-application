@@ -267,7 +267,7 @@ $(document).ready(function(){
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>
               <asp:Label ID="Label1" runat="server" Text=""></asp:Label> </a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+          <li><a href="Disconnect.aspx"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
         </ul>
       </div>
     </nav>
@@ -354,6 +354,8 @@ $(document).ready(function(){
                     </table>
                 </div>
             </div>
+       <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" Text="Valider" OnClick="Button1_Click" />
+
        </div>
           
         <div class="col-md-2 column"> </div>

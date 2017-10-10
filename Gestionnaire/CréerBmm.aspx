@@ -293,7 +293,7 @@ $(document).ready(function(){
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>
               <asp:Label ID="LabelUser" runat="server" Text=""></asp:Label> </a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+          <li><a href="Disconnect.aspx"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
         </ul>
       </div>
     </nav>

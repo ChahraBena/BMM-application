@@ -72,6 +72,7 @@ public partial class login2 : System.Web.UI.Page
             {
                 Session["id"] = dr1.GetInt32(0);
                 Session["userName"] = dr1[3].ToString();
+                Session["DepartementId"] = dr1.GetInt32(6);
                 dr1.Close();
 
                 Response.Redirect("Gestionnaire/AcceuilUser.aspx");
@@ -80,8 +81,9 @@ public partial class login2 : System.Web.UI.Page
             {
                 Session["id"] = dr1.GetInt32(0);
                 Session["userName"] = dr1[3].ToString();
+                Session["DepartementId"] = dr1.GetInt32(6);
                 dr1.Close();
-
+          
                 Response.Redirect("Administrateur/AcceuilUser.aspx");
             }
         }
@@ -89,7 +91,7 @@ public partial class login2 : System.Web.UI.Page
             
             else
             {
-              LabelError.Text = "Utilisateur non existant";
+            LabelError.Visible = true;
                 dr1.Close();
             }
         }

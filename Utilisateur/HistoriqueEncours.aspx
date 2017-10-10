@@ -267,7 +267,11 @@ $(document).ready(function(){
 </head>
 
 <body>
-     <div class="body"></div>
+
+      
+     <div class="body">
+         
+           </div>
     <div class="nav">
         <nav class="navbar navbar-custom">
   <div class="container-fluid">
@@ -279,7 +283,7 @@ $(document).ready(function(){
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#"><span class="glyphicon glyphicon-user"></span>
               <asp:Label ID="Label1" runat="server" Text=""></asp:Label> </a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
+          <li><a href="../Disconnect.aspx"><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a></li>
         </ul>
       </div>
     </nav>
@@ -289,7 +293,7 @@ $(document).ready(function(){
     <div class="container-fluid">
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li ><a href="#">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+				<li ><a href="AcceuilUser.aspx">Acceuil<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                 <li ><a href="CréerBMM.aspx">BMM<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
                  				<li class="dropdown">
 					<a href="#"class=" dropdown-toggle" data-toggle="dropdown">Historique<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a>
@@ -303,14 +307,12 @@ $(document).ready(function(){
 </nav>
 
     </div>
+     <form id="contactForm" runat="server" method="post" class="form-horizontal">
     <div class="col-md-2 column">
        
            </div>
 
-       <form id="contactForm" runat="server" method="post" class="form-horizontal">
-         <div class="col-md-2 column">
-
-           </div>
+      
    <div class="col-md-8 column">          
                 <h2>BMM en cours</h2> <br/>
                 <div class="table-responsive table-back">
@@ -341,7 +343,28 @@ $(document).ready(function(){
 
 </table>
 </div>
-            
+             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="false" ></asp:DropDownList>
+                    <asp:Button id="myButton" runat="server" Text="Afficher" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="myButton_Click"/>
+
+                   <div id="table4" class="table-responsive table-back" runat="server" visible="false" > 
+         <table id="myTable2" class="display table"  >
+            <thead>  
+          <tr>  
+            <th>Modèle</th>  
+            <th>Marque</th>
+              <th>Description</th>
+              <th>Référence</th>
+              
+          </tr>                  
+        </thead>  
+                  <tbody  id="BmmBody" runat="server">
+                           
+                        </tbody>
+         
+          
+
+</table>
+  </div>     
            </div>
         <div class="col-md-2 column"> </div>
    </form>

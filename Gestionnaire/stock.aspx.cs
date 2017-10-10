@@ -30,7 +30,6 @@ public partial class Gestionnaire_stock : System.Web.UI.Page
 
                 }
                 dr1.Close();
-
                 query1 = "SELECT Reference FROM Produit where Reference='" + TextBoxReference.Text + "'";
                 cmd = new SqlCommand(query1, conn);
                 dr1 = cmd.ExecuteReader();
@@ -41,7 +40,7 @@ public partial class Gestionnaire_stock : System.Web.UI.Page
                 else
                 {
                     dr1.Close();
-                    query1 = "INSERT INTO Produit VALUES ('" + TextBoxMarque.Text + "','" + TextBoxModele.Text + "','" + TextBoxReference.Text + "','" + TextBoxCodeSH.Text + "','" + TextBoxInventaire.Text + "','" + TextBoxDescription.Text + "'," + idType + ",6,1)";
+                    query1 = "INSERT INTO Produit VALUES ('" + TextBoxMarque.Text + "','" + TextBoxModele.Text + "','" + TextBoxReference.Text + "','" + TextBoxCodeSH.Text + "','" + TextBoxInventaire.Text + "','" + TextBoxDescription.Text + "'," + idType + ",140,1)";
                     cmd = new SqlCommand(query1, conn);
                     cmd.ExecuteNonQuery();
                     conn.Close();

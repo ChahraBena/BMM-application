@@ -41,9 +41,9 @@ public partial class AjouterUser : System.Web.UI.Page
                 query2 = "SELECT UserName FROM Utilisateur where UserName='" + TextBoxUsername.Text + "'";
                 cmd = new SqlCommand(query2, conn);
                 dr1 = cmd.ExecuteReader();
-                if(dr1.Read())
+                if (dr1.Read())
                 {
-                    Label2.Text=" Le nom d utilisateur est déja utilisé";
+                    Label2.Text = " Le nom d utilisateur est déja utilisé";
                     dr1.Close();
                 }
                 else
@@ -54,10 +54,11 @@ public partial class AjouterUser : System.Web.UI.Page
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     Label2.Text = "Utilisateur enregistré";
-                    
+
+
                 }
-               
-                
+
+
             }
             catch (Exception ex)
             {

@@ -12,6 +12,7 @@ using System.Text;
 
 public partial class CréerBMMValidateur : System.Web.UI.Page
 {
+
     public static List<produit> Liste = new List<produit>();
     public static List<produit> Liste2 = new List<produit>();
     public static int i = 1;
@@ -202,7 +203,9 @@ public partial class CréerBMMValidateur : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CréerBMM.aspx");
+        var message = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize("BMM Enregisté!");
+        var script = string.Format("alert({0});window.location ='AcceuilValidateur.aspx';", message);
+        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "", script, true);
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -218,4 +221,5 @@ public partial class CréerBMMValidateur : System.Web.UI.Page
 
 
     }
+
 }

@@ -23,7 +23,7 @@ public partial class ValiderBMM : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             BMM b; ListItem item = new ListItem();
-            DropDownList1.Items.Add(new ListItem("select your choice", "id0"));
+            DropDownList1.Items.Add(new ListItem("Selectionner un code", "id0"));
             listeValide = new List<BMM>();
             int code; string validation1 = "non validé", validation2 = "non validé", livr = "non livré";
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
@@ -90,13 +90,19 @@ public partial class ValiderBMM : System.Web.UI.Page
 
     protected void myButton_Click(object sender, EventArgs e)
     {
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
-        conn.Open();
-        string query1 = "UPDATE BMM SET Valid1='True' WHERE code="+DropDownList1.Text+"";
-        SqlCommand cmd = new SqlCommand(query1, conn);
-        cmd.ExecuteNonQuery();
-        conn.Close();
-        Response.Redirect(Request.RawUrl, true);
+        if (DropDownList1.SelectedValue.ToString() != "id0")
+        {
+
+
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["BMM_SHConnectionString"].ConnectionString);
+            conn.Open();
+            DateTime date = DateTime.Now;
+            string query1 = "UPDATE BMM SET Valid1=1 , DateValidation1='"+ date +"' WHERE code=" + DropDownList1.Text + "";
+            SqlCommand cmd = new SqlCommand(query1, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            Response.Redirect(Request.RawUrl, true);
+        }
 
     }
 }
