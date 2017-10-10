@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AcceuilUser.aspx.cs" Inherits="AcceuilUser" %>
+﻿<%@ Page Language="C#" Debug="true" AutoEventWireup="true" CodeFile="AcceuilUser.aspx.cs" Inherits="AcceuilUser" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/xml; charset=utf-8"/>
     <title>BMM | Home</title>
   
    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
